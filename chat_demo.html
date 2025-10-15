@@ -5,26 +5,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chat Demo</title>
 <style>
-  body { font-family: Segoe UI, Arial, sans-serif; background:#f3f2f1; margin:0; padding:20px; }
-  .chatbox { max-width:500px; margin:auto; background:#fff; border-radius:12px;
-             box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:16px; }
-  .messages { height:300px; overflow-y:auto; background:#f9fafb; border-radius:8px; padding:8px; margin-bottom:8px; }
-  .msg { margin-bottom:8px; display:flex; }
-  .msg.bot { justify-content:flex-start; }
-  .msg.user { justify-content:flex-end; }
-  .bubble { max-width:75%; padding:8px 12px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); word-wrap:break-word; }
-  .bot .bubble { background:#fff; color:#333; }
-  .user .bubble { background:#0078d4; color:#fff; }
-  textarea { flex:1; padding:8px; border:1px solid #ccc; border-radius:8px; resize:none; }
-  button { background:#0078d4; color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; }
+  body {
+    font-family: Segoe UI, Arial, sans-serif;
+    background: #f3f2f1;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 🟩 chat container now full width */
+  .chatbox {
+    width: 100%;
+    max-width: none;         /* removed fixed 500px */
+    height: 100vh;           /* optional: fill full window height */
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 0;        /* or keep 12px if you like rounded edges */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .messages {
+    flex: 1;                 /* expand to fill remaining space */
+    overflow-y: auto;
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .msg { margin-bottom: 8px; display: flex; }
+  .msg.bot { justify-content: flex-start; }
+  .msg.user { justify-content: flex-end; }
+
+  .bubble {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+  }
+
+  .bot .bubble { background: #fff; color: #333; }
+  .user .bubble { background: #0078d4; color: #fff; }
+
+  .input-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  textarea {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+  }
+
+  button {
+    background: #0078d4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
   <div class="chatbox">
     <div class="messages" id="messages">
-      <div class="msg bot"><div class="bubble">👋 Hi — I’m your SharePoint Chat demo. Type something below!</div></div>
+      <div class="msg bot">
+        <div class="bubble">👋 Hi — I’m your Use Cases Assistant Chat demo. Type something below!</div>
+      </div>
     </div>
-    <div style="display:flex; gap:8px;">
+
+    <div class="input-row">
       <textarea id="input" placeholder="Type a message..."></textarea>
       <button id="send">Send</button>
     </div>
